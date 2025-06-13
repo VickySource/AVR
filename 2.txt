@@ -1,0 +1,18 @@
+.org 0
+.equ	result	=0X0300	;address of result
+.def	dividend =r17		;dividend
+.def	divisor =r18		;divisor
+.def	counter =r19		;loop counter
+
+ldi dividend,10
+ldi divisor,2
+ldi counter,0
+clc 
+ l1:inc counter
+ sub dividend,divisor
+ brcc l1
+ dec counter
+
+  ; store the result in memory location
+ sts result,counter
+Here: rjmp Here

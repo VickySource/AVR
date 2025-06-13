@@ -1,0 +1,30 @@
+.org 0
+ ;configure  PORTA,PORTB,PORTC and PORTD  as output port 
+ ldi r16,0xff
+ out ddra,r16
+ out ddrb,r16
+out ddrc,r16
+out ddrd,r16
+
+ ;load the forst number to PORTA and second number to PORTB
+ldi r16,0x45
+ out porta,r16
+ldi r17,0x20
+ out portb,r17
+  
+ ;configure  PORTA and PORTB as input port
+ ldi r20,0x00
+ out ddra,r20
+out ddrb,r20
+
+ ;read the two numbers  from PINA and PINB 
+ in r24,pina
+in r25,pinb
+
+;multiply two numbers
+mul r24,r25
+
+;send result to PORT C and PORTD
+out portc,r0
+out portd,r1
+here:rjmp here

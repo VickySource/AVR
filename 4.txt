@@ -1,0 +1,22 @@
+.org 0
+;stack initialization
+ldi r18,high(ramend)
+out sph,r18
+ldi r18,low(ramend)
+out spl,r18
+ldi r19,0x05
+ldi r18,0x01
+call fact	;call subroutine
+;make PORTA as output port to send result
+ldi r16,0xff
+out ddra,r16
+out porta,r18 
+here: rjmp here
+
+;subroutine		 		 
+fact:    nop
+loop:    mul r18,r19
+  	  mov r18,r0
+	  dec r19
+ 	  brne loop
+	  ret	;return to main code

@@ -1,0 +1,28 @@
+.org 0
+
+       ;configure  PORTA,PORTB  and  PORTC  as output port 
+ ldi r16,0XFF
+ out ddra,r16
+ out ddrb,r16
+ out ddrc,r16
+
+;load some value into PORTC
+ ldi r17,0X20
+ out portc,r17
+
+;configure pin 1 of PORTC as Input pin
+ cbi ddrc,1
+ 
+;skip next instruction if PIN 1 of PORTC is set
+sbis pinc,1
+ rjmp over
+
+;send ‘Y’ to PORTA
+ ldi r16,'Y'
+ out porta,r16
+ rjmp here
+
+;send ‘N’ to PORTB
+ over: ldi r16,'N'
+ out portb,r16
+here:  rjmp here

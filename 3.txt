@@ -1,0 +1,25 @@
+.org 0
+ ldi r16,128	
+ ldi r19,0
+  ldi r17,0x08	;counter for loop
+ clc
+; right shift the content of register R16 8 times and count the number of 1’s
+ top: lsr r16	
+ brcc l1
+ inc r19
+ l1:  dec r17
+        brne top 
+here:rjmp here
+
+OR
+/*
+Example- Input: R16=128 (decimal)
+Output:  Finally, if the content of register R17 is 0(zero) then the given number is power of 2, otherwise not.
+*/
+
+.org 0
+ ldi r16,128	;load the number into r16
+mov r17,16	;copy the content of r16 to r17
+subi r17,1		;find the previous number of the given number
+andi r17,r16	; perform logical AND on r17 and r16
+here:rjmp here

@@ -1,0 +1,17 @@
+ .org 0
+ .equ largest=0x0060
+ ; load r16,r17 and r18 with three numbers
+         ldi r16,-27
+         ldi r17,27
+         ldi r18,-10
+ ;logic to find larsest number and r16 contains the largest number
+         cp r16,r17
+         brge l1
+         mov r16,r17
+   l1:   cp r16,r18
+         brge l2
+         mov r16,r18
+  ; store the largest number in memory location
+   l2:   sts largest,r16
+ here:   jmp here
+

@@ -1,0 +1,73 @@
+.include "m32def.inc"
+ .org 0
+; store 10 bytes of data starting from location 0x300 to 0x309
+Ldi r16,10
+Sts 0X0300,r16
+Ldi r16,20
+Sts 0X0301,r16
+Ldi r16,30
+Sts 0X0302,r16
+Ldi r16,40
+Sts 0X0303,r16
+Ldi r16,50
+Sts 0X0304,r16
+Ldi r16,60
+Sts 0X0305,r16
+Ldi r16,70
+Sts 0X0306,r16
+Ldi r16,80
+Sts 0X0307,r16
+Ldi r16,90
+Sts 0X0308,r16
+Ldi r16,100
+Sts 0X0309,r16
+
+Ldi r21,0
+Ldi r22,0
+
+;read each byte from location 0x300 to 0x309 and add each value to R21
+Lds r20,0X0300
+Add r21,r20
+Lds r20,0x0301
+Add r21,r20
+Lds r20,0x0302
+Add r21,r20
+Lds r20,0x0303
+Add r21,r20
+Lds r20,0x304
+Add r21,r20
+Lds r20,0x0305
+Add r21,r20
+Lds r20,0x0306
+Add r21,r20
+Lds r20,0x0307
+Add r21,r20
+Lds r20,0x0308
+Add r21,r20
+Lds r20,0x0309
+Add r21,r20
+;read the content of status register
+in r19,sreg
+lsr r19		;obtain the content of carry bit
+brcc Here
+ldi r22,1		;store the carry bit value into R22
+Here:rjmp Here
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
