@@ -1,2 +1,3 @@
 # AVR
 LAB MANUAL
+delete README
